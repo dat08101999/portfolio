@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-30",
+  "direction": "Editorial mobile-developer portfolio: paper, charcoal and vermilion; oversized typography, generous space, real product photography and restrained interactive 3D.",
+  "references": [
+    { "url": "https://dennissnellenberg.com/", "applied": "Clear personal identity, strong typographic scale and project-led composition; not a visual copy." },
+    { "url": "https://rauno.me/craft", "applied": "Show actual interface work and keep interactions deliberate." },
+    { "url": "https://bruno-simon.com/", "applied": "Use real WebGL interaction as an intentional feature, with a static fallback." }
+  ],
+  "original_screenshots": [
+    { "asset": "dist/assets/lingo-home.png", "source": "AI Lingo original app screenshot: home" },
+    { "asset": "dist/assets/lingo-talk.png", "source": "AI Lingo original app screenshot: conversation" },
+    { "asset": "dist/assets/lingo-roadmap.png", "source": "AI Lingo original app screenshot: learning roadmap" },
+    { "asset": "dist/assets/pa-analysis.png", "source": "Price Action Trainer original app screenshot: chart analysis preview" }
+  ],
+  "content_policy": "CV career dates preserved. Additional products ordered by verified App Store initial release dates: Price Action Trainer (2026), AI Lingo / Speaky AI (2025). No invented impact metrics or client endorsements.",
+  "runtime": "Static HTML, CSS and JavaScript. Vendored Three.js 0.180.0; locally hosted Manrope. No third-party runtime tracking. Respect prefers-reduced-motion; stop rendering offscreen and in background tabs."
+}

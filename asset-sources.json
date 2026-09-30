@@ -1,0 +1,72 @@
+{
+  "retrieved": "2026-09-30",
+  "source": "Apple iTunes Lookup API / official App Store listings",
+  "apps": [
+    {
+      "slug": "pa",
+      "id": 6782149821,
+      "name": "Price Action Trading Simulator",
+      "bundleId": "com.patrainer.app",
+      "releaseDate": "2026-07-05T07:00:00Z",
+      "url": "https://apps.apple.com/us/app/price-action-trading-simulator/id6782149821?uo=4",
+      "screenshots": [
+        {
+          "filename": "pa-1.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/10/87/15/1087158e-7187-39f6-9590-d898b8d8fb5f/05_learn.png/1170x2532bb.png"
+        },
+        {
+          "filename": "pa-2.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c8/48/fd/c848fd20-1418-f4e1-f780-68fa82ded28b/01_practice.png/1170x2532bb.png"
+        },
+        {
+          "filename": "pa-3.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/e7/98/81/e7988194-7eae-becd-eb13-32c1e97a6d41/04_smc.png/1170x2532bb.png"
+        },
+        {
+          "filename": "pa-4.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a9/50/96/a9509673-3252-44fc-c783-7d76dd8e4b03/03_discipline.png/1170x2532bb.png"
+        }
+      ]
+    },
+    {
+      "slug": "lingo",
+      "id": 6745432034,
+      "name": "Speaky AI: Speak English",
+      "bundleId": "com.datthe.aiLingo",
+      "releaseDate": "2025-12-04T08:00:00Z",
+      "url": "https://apps.apple.com/us/app/speaky-ai-speak-english/id6745432034?uo=4",
+      "screenshots": [
+        {
+          "filename": "lingo-1.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a4/3b/80/a43b80cd-48c5-9548-2ff4-479a0610ddfc/01-speak-real-english-with-ai.png/1170x2532bb.png"
+        },
+        {
+          "filename": "lingo-2.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/5e/e8/75/5ee875ba-5279-efc4-b0b8-2be48a4cc0e3/04-grow-english-roadmap-a1-c2.png/1170x2532bb.png"
+        },
+        {
+          "filename": "lingo-3.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d4/a3/cb/d4a3cb32-649d-1698-5dac-69db6a5db7f3/07-practice-useful-english-phrases.png/1170x2532bb.png"
+        },
+        {
+          "filename": "lingo-4.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/62/d7/78/62d778a4-fad6-57ff-a4d1-ad9d2dd971bd/05-discover-practical-grammar.png/1170x2532bb.png"
+        }
+      ]
+    },
+    {
+      "slug": "buddhism",
+      "id": 6504455597,
+      "name": "buddhism - buddha wallpapers",
+      "bundleId": "com.datthe.buddhism",
+      "releaseDate": "2024-06-19T07:00:00Z",
+      "url": "https://apps.apple.com/us/app/buddhism-buddha-wallpapers/id6504455597?uo=4",
+      "screenshots": [
+        {
+          "filename": "buddhism-1.png",
+          "source": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/11/d3/2f/11d32f1e-bed7-d2b5-32d4-32f4b962e4b3/62fc085f-d8c5-4c08-9dca-4a2076447543_Frame_1.png/1170x2532bb.png"
+        }
+      ]
+    }
+  ]
+}

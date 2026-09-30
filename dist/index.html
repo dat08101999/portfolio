@@ -3,418 +3,115 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nguyễn Đình Thế Đạt — Flutter Developer</title>
-  <meta name="description" content="Portfolio of Nguyễn Đình Thế Đạt, a Flutter developer building production mobile products, native integrations and AI-powered experiences.">
-  <meta name="theme-color" content="#0a1020">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a1020'/%3E%3Cpath d='M18 16h27L31 30h14L24 51l7-15H18l13-13H18z' fill='%237cf7c8'/%3E%3C/svg%3E">
-  <style>
-    :root {
-      color-scheme: dark;
-      --ink: #edf4ff;
-      --muted: #9facbf;
-      --soft: #151d31;
-      --soft-2: #1b2540;
-      --line: rgba(189, 210, 244, .14);
-      --page: #080d19;
-      --lime: #7cf7c8;
-      --blue: #79a7ff;
-      --amber: #ffcd73;
-      --shadow: 0 26px 70px rgba(0, 0, 0, .34);
-      --radius: 24px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 86% 8%, rgba(121, 167, 255, .16), transparent 31rem),
-        radial-gradient(circle at 14% 32%, rgba(124, 247, 200, .08), transparent 28rem),
-        var(--page);
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    img { display: block; max-width: 100%; }
-    ::selection { color: #061018; background: var(--lime); }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .032;
-      z-index: 99;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-    }
-
-    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid transparent;
-      transition: background .25s ease, border-color .25s ease;
-    }
-    .nav.scrolled { background: rgba(8, 13, 25, .82); border-color: var(--line); backdrop-filter: blur(18px); }
-    .nav-inner { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -.02em; }
-    .brand-mark {
-      width: 34px; height: 34px; display: grid; place-items: center;
-      border-radius: 11px; color: #061018; background: var(--lime);
-      box-shadow: 0 0 0 6px rgba(124, 247, 200, .07);
-    }
-    .brand-mark svg { width: 18px; }
-    .nav-links { display: flex; align-items: center; gap: 28px; color: var(--muted); font-size: .92rem; }
-    .nav-links a { transition: color .2s ease; }
-    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
-    .nav-cta { color: #061018 !important; background: var(--lime); padding: 9px 15px; border-radius: 999px; font-weight: 760; }
-
-    .hero { min-height: calc(100vh - 76px); display: grid; grid-template-columns: 1.22fr .78fr; align-items: center; gap: 70px; padding: 72px 0 100px; }
-    .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; color: var(--lime); font: 700 .78rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .13em; text-transform: uppercase; }
-    .eyebrow::before { content: ""; width: 38px; height: 1px; background: currentColor; }
-    h1 { margin: 0; max-width: 800px; font-size: clamp(3.4rem, 7.7vw, 7.2rem); line-height: .91; letter-spacing: -.073em; font-weight: 790; }
-    h1 span { display: block; color: var(--muted); font-weight: 500; }
-    .hero-copy { max-width: 690px; margin: 30px 0 34px; color: #c3cee0; font-size: clamp(1.06rem, 1.7vw, 1.3rem); line-height: 1.68; }
-    .hero-copy strong { color: var(--ink); font-weight: 650; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
-    .button { min-height: 48px; padding: 0 20px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; font-weight: 740; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
-    .button:hover, .button:focus-visible { transform: translateY(-2px); border-color: rgba(124, 247, 200, .5); }
-    .button.primary { color: #071019; background: var(--lime); border-color: var(--lime); }
-    .button svg { width: 17px; }
-
-    .portrait-wrap { position: relative; width: min(390px, 100%); justify-self: end; }
-    .portrait-frame { position: relative; aspect-ratio: 1 / 1.16; padding: 13px; overflow: hidden; border: 1px solid var(--line); border-radius: 38px 38px 132px 38px; background: linear-gradient(150deg, rgba(124,247,200,.12), rgba(121,167,255,.06)); box-shadow: var(--shadow); }
-    .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 35%; border-radius: 28px 28px 120px 28px; filter: saturate(.84) contrast(1.05); }
-    .portrait-code { position: absolute; left: -40px; bottom: 34px; width: 182px; padding: 16px 18px; border: 1px solid rgba(124,247,200,.24); border-radius: 16px; background: rgba(13,20,36,.88); box-shadow: var(--shadow); backdrop-filter: blur(14px); font: 600 .78rem/1.75 ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .portrait-code .key { color: var(--blue); } .portrait-code .value { color: var(--lime); }
-    .orbit { position: absolute; right: -22px; top: 46px; width: 66px; height: 66px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; background: var(--page); }
-    .orbit::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 28px var(--amber); }
-
-    section { padding: 100px 0; border-top: 1px solid var(--line); }
-    .section-head { display: grid; grid-template-columns: .7fr 1.3fr; gap: 48px; align-items: end; margin-bottom: 50px; }
-    .kicker { color: var(--lime); font: 700 .78rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; }
-    h2 { margin: 10px 0 0; font-size: clamp(2.3rem, 5vw, 4.5rem); line-height: 1.02; letter-spacing: -.055em; }
-    .section-intro { max-width: 650px; margin: 0; color: var(--muted); font-size: 1.06rem; }
-
-    .feature-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 20px; }
-    .product-card { position: relative; min-height: 400px; padding: 34px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, rgba(23,32,54,.96), rgba(12,18,32,.96)); }
-    .product-card::after { content: ""; position: absolute; width: 290px; height: 290px; right: -100px; bottom: -140px; border-radius: 50%; background: var(--glow); filter: blur(2px); opacity: .22; }
-    .product-card.secondary { --glow: #79a7ff; }
-    .product-card.primary { --glow: #7cf7c8; }
-    .product-number { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font: 700 .76rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; text-transform: uppercase; letter-spacing: .1em; }
-    .product-badge { color: var(--lime); }
-    .product-body { position: relative; z-index: 2; }
-    .product-icon { width: 56px; height: 56px; margin-bottom: 28px; display: grid; place-items: center; border-radius: 18px; color: var(--lime); background: rgba(124,247,200,.09); border: 1px solid rgba(124,247,200,.16); }
-    .secondary .product-icon { color: var(--blue); background: rgba(121,167,255,.1); border-color: rgba(121,167,255,.2); }
-    .product-icon svg { width: 27px; }
-    h3 { margin: 0 0 12px; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.05; letter-spacing: -.04em; }
-    .product-card p { max-width: 570px; margin: 0; color: #b9c5d8; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 23px; }
-    .tag { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: #c7d2e4; font: 650 .73rem/1.25 ui-monospace, SFMono-Regular, Menlo, monospace; }
-
-    .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
-    .archive-card { padding: 25px; min-height: 238px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 18px; background: rgba(18, 25, 43, .74); transition: transform .2s ease, border-color .2s ease; }
-    .archive-card:hover { transform: translateY(-4px); border-color: rgba(121, 167, 255, .34); }
-    .archive-meta { color: var(--muted); font: 700 .72rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .1em; text-transform: uppercase; }
-    .archive-card h4 { margin: auto 0 10px; font-size: 1.35rem; line-height: 1.2; letter-spacing: -.025em; }
-    .archive-card p { margin: 0; color: var(--muted); font-size: .92rem; }
-    .archive-links { display: flex; gap: 12px; margin-top: 19px; color: var(--blue); font-size: .84rem; font-weight: 720; }
-
-    .experience-layout { display: grid; grid-template-columns: 290px 1fr; gap: 72px; }
-    .experience-aside { position: sticky; top: 110px; align-self: start; }
-    .experience-aside p { color: var(--muted); }
-    .metric { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
-    .metric strong { font-size: 1.8rem; letter-spacing: -.04em; color: var(--lime); }
-    .metric span { color: var(--muted); font-size: .88rem; }
-    .timeline { position: relative; }
-    .timeline::before { content: ""; position: absolute; top: 8px; bottom: 0; left: 7px; width: 1px; background: var(--line); }
-    .role { position: relative; padding: 0 0 54px 48px; }
-    .role:last-child { padding-bottom: 0; }
-    .role-dot { position: absolute; left: 0; top: 7px; width: 15px; height: 15px; border: 3px solid var(--page); border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 1px rgba(124,247,200,.3); }
-    .role-date { color: var(--lime); font: 700 .77rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; }
-    .role h3 { margin-top: 9px; font-size: clamp(1.55rem, 3vw, 2.3rem); }
-    .role-company { margin-bottom: 18px; color: var(--blue); font-weight: 720; }
-    .role > p { color: var(--muted); }
-    .role ul { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
-    .role li { position: relative; padding-left: 24px; color: #bfcbdd; }
-    .role li::before { content: "+"; position: absolute; left: 0; color: var(--lime); font: 700 1rem/1.65 ui-monospace, monospace; }
-
-    .skills-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .skill-panel { padding: 34px; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(16,23,40,.76); }
-    .skill-panel h3 { font-size: 1.55rem; margin-bottom: 24px; }
-    .skill-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
-    .skill-row span:last-child { color: var(--muted); font: 650 .76rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .tool-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
-    .tool-cloud span { padding: 9px 13px; border-radius: 10px; background: var(--soft-2); color: #c8d4e6; }
-
-    .contact { padding-bottom: 70px; }
-    .contact-card { position: relative; padding: clamp(36px, 7vw, 74px); overflow: hidden; border: 1px solid rgba(124,247,200,.21); border-radius: 36px; background: linear-gradient(130deg, rgba(124,247,200,.1), rgba(121,167,255,.07) 58%, rgba(13,19,34,.94)); }
-    .contact-card::after { content: ""; position: absolute; right: -12%; top: -62%; width: 440px; aspect-ratio: 1; border: 1px solid rgba(124,247,200,.17); border-radius: 50%; box-shadow: 0 0 0 60px rgba(124,247,200,.025), 0 0 0 120px rgba(121,167,255,.018); }
-    .contact-card h2 { max-width: 750px; position: relative; z-index: 2; }
-    .contact-card p { max-width: 590px; position: relative; z-index: 2; color: var(--muted); font-size: 1.05rem; }
-    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; position: relative; z-index: 2; }
-    footer { padding: 25px 0 45px; display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .84rem; }
-
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: 60px; }
-      .portrait-wrap { justify-self: start; margin-left: 38px; }
-      .section-head, .experience-layout { grid-template-columns: 1fr; gap: 30px; }
-      .experience-aside { position: static; }
-      .feature-grid, .skills-wrap { grid-template-columns: 1fr; }
-      .archive-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 650px) {
-      .shell { width: min(100% - 26px, 1180px); }
-      .nav-inner { height: 66px; }
-      .nav-links a:not(.nav-cta) { display: none; }
-      .brand span:last-child { font-size: .9rem; }
-      .hero { min-height: auto; padding: 62px 0 78px; }
-      h1 { font-size: clamp(3rem, 17vw, 4.7rem); }
-      .hero-copy { font-size: 1rem; }
-      .portrait-wrap { width: calc(100% - 18px); margin-left: 18px; }
-      .portrait-code { left: -18px; bottom: 24px; }
-      .orbit { right: -10px; }
-      section { padding: 76px 0; }
-      .product-card { min-height: 360px; padding: 25px; }
-      .archive-grid { grid-template-columns: 1fr; }
-      .archive-card { min-height: 210px; }
-      .role { padding-left: 38px; }
-      .skill-panel { padding: 25px; }
-      .contact-card { border-radius: 24px; }
-      footer { flex-direction: column; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
+  <title>Thế Đạt — Mobile Developer</title>
+  <meta name="description" content="Nguyễn Đình Thế Đạt — Flutter developer. Explore real screens from Price Action Trainer, AI Lingo and the mobile products I build.">
+  <meta name="theme-color" content="#f4f4f1">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ed492d'/%3E%3Ctext x='11' y='47' font-family='Arial' font-weight='bold' font-size='45' fill='%23fff'%3Ed.%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="assets/manrope-extrabold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+  <script type="module" src="scene.js"></script>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-
-  <header class="nav" id="nav">
-    <div class="shell nav-inner">
-      <a class="brand" href="#top" aria-label="Back to top">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 3h16L11.5 11H20L7 22l4-8H4l8-8H4z" fill="currentColor"/></svg></span>
-        <span>Đạt / Flutter Developer</span>
-      </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a class="nav-cta" href="mailto:thedat08101999@gmail.com">Let's talk</a>
-      </nav>
-    </div>
+  <a class="skip-link" href="#work">Skip to projects</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Thế Đạt, back to top">đạt<span aria-hidden="true">✳</span></a>
+    <div class="header-note">Mobile developer<br>Based in Vietnam</div>
+    <nav aria-label="Main navigation">
+      <a href="#work">Work <span>02</span></a>
+      <a href="#about">About</a>
+      <a href="#contact" class="contact-nav">Let's talk <span class="small-circle" aria-hidden="true">↗</span></a>
+    </nav>
   </header>
-
-  <main id="top">
-    <section class="shell hero" aria-labelledby="hero-title">
-      <div>
-        <div class="eyebrow">Flutter · Native integrations · AI products</div>
-        <h1 id="hero-title">Nguyễn Đình <span>Thế Đạt.</span></h1>
-        <p class="hero-copy">I build mobile products where <strong>clean Flutter interfaces</strong> meet demanding product logic — from VOIP and real-time chat to billing, media workflows and AI-assisted learning.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#work">Explore my work</a>
-          <a class="button" href="nguyen-dinh-the-dat-cv.pdf" download>
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Download CV
-          </a>
+  <main>
+    <section id="top" class="hero" aria-labelledby="hero-title">
+      <div class="hero-topline"><span>NGUYỄN ĐÌNH THẾ ĐẠT</span><span>PORTFOLIO — 2026</span></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="label">FLUTTER DEVELOPER & PRODUCT BUILDER</p>
+          <h1 id="hero-title">Mobile<br>by <span>Đạt.</span></h1>
+          <p class="hero-description">From a first idea to an app in your hands.<br>I build mobile experiences with Flutter,<br>native integrations and applied AI.</p>
+          <a class="round-link" href="#work"><span class="link-disc" aria-hidden="true">↓</span><span>Explore selected work</span></a>
         </div>
-      </div>
-
-      <div class="portrait-wrap" aria-label="Portrait of Nguyễn Đình Thế Đạt">
-        <div class="portrait-frame"><img src="dat-portrait.jpg" width="244" height="244" alt="Nguyễn Đình Thế Đạt"></div>
-        <div class="portrait-code" aria-hidden="true">
-          <div><span class="key">role:</span> <span class="value">flutter_dev</span></div>
-          <div><span class="key">focus:</span> products</div>
-          <div><span class="key">status:</span> <span class="value">building</span></div>
-        </div>
-        <div class="orbit" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="shell">
-        <div class="section-head reveal">
-          <div><div class="kicker">01 / Selected products</div><h2>Built to be used.</h2></div>
-          <p class="section-intro">Independent products shaped around a clear job: help someone learn, practise or publish with less friction. These two newest concepts extend my mobile experience into applied AI and interactive training.</p>
-        </div>
-
-        <div class="feature-grid">
-          <article class="product-card primary reveal">
-            <div class="product-number"><span>Featured product 01</span><span class="product-badge">AI × Learning</span></div>
-            <div class="product-body">
-              <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6.5A3.5 3.5 0 0 1 8.5 3H16a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-4l-4.5 4v-4A3.5 3.5 0 0 1 4 10.5v-4Z" stroke="currentColor" stroke-width="1.8"/><path d="M8 8h7M8 11h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <h3>AI Lingo</h3>
-              <p>An AI-assisted language practice experience for guided conversation, contextual feedback and short learning loops that fit into a daily routine.</p>
-              <div class="tags"><span class="tag">Flutter</span><span class="tag">Conversational AI</span><span class="tag">Voice UX</span><span class="tag">Personalisation</span></div>
-            </div>
-          </article>
-
-          <article class="product-card secondary reveal">
-            <div class="product-number"><span>Featured product 02</span><span class="product-badge">Practice × Feedback</span></div>
-            <div class="product-body">
-              <div class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V8m5 10V5m5 13v-7m5 7V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m3 14 5-4 5 3 7-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <h3>Price Action Trainer</h3>
-              <p>A risk-free training product for reading price structure through scenario replay, focused decisions and immediate feedback — designed for deliberate practice, not live trading.</p>
-              <div class="tags"><span class="tag">Flutter</span><span class="tag">Interactive charts</span><span class="tag">Scenario engine</span><span class="tag">Learning design</span></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="archive-grid">
-          <article class="archive-card reveal">
-            <div class="archive-meta">Mobile · Web · Solo build</div>
-            <h4>Create Simple Website</h4>
-            <p>A template-based website builder delivered across mobile and web.</p>
-            <div class="archive-links"><a href="https://mysimplesite.it.com/" target="_blank" rel="noreferrer">Live site</a></div>
-          </article>
-          <article class="archive-card reveal">
-            <div class="archive-meta">AI learning · Solo build</div>
-            <h4>10 Minutes English</h4>
-            <p>Story and subtitle-based learning with AI chatbot and voice conversations.</p>
-            <div class="archive-links"><a href="https://apps.apple.com/sa/app/10-minute-english-e-master/id6499420243?platform=iphone" target="_blank" rel="noreferrer">App Store</a><a href="https://play.google.com/store/apps/details?id=com.datthe.storyinlevel&amp;hl=vi" target="_blank" rel="noreferrer">Google Play</a></div>
-          </article>
-          <article class="archive-card reveal">
-            <div class="archive-meta">Content app · Solo build</div>
-            <h4>Buddhism Wallpaper</h4>
-            <p>A quiet image-led product that pairs Buddhist wisdom with visual content.</p>
-            <div class="archive-links"><a href="https://apps.apple.com/sa/app/buddhism-buddha-wallpapers/id6504455597?platform=iphone" target="_blank" rel="noreferrer">App Store</a><a href="https://play.google.com/store/apps/details?id=com.datthe.buddhism" target="_blank" rel="noreferrer">Google Play</a></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="shell">
-        <div class="section-head reveal">
-          <div><div class="kicker">02 / Experience</div><h2>From newest to oldest.</h2></div>
-          <p class="section-intro">A reverse-chronological view of product building, team leadership and the technical foundations behind the work.</p>
-        </div>
-
-        <div class="experience-layout">
-          <aside class="experience-aside reveal">
-            <p>I work across the full mobile delivery cycle — from Figma and architecture to native bridges, store policy and production release.</p>
-            <div class="metric"><strong>20+</strong><span>dynamic view types delivered in one configurable product surface</span></div>
-            <div class="metric"><strong>5</strong><span>team members led on a production application</span></div>
-            <div class="metric"><strong>2</strong><span>major app stores shipped to</span></div>
-          </aside>
-
-          <div class="timeline">
-            <article class="role reveal">
-              <span class="role-dot" aria-hidden="true"></span>
-              <div class="role-date">2024 — 2025</div>
-              <h3>Independent Product Developer</h3>
-              <div class="role-company">Personal products · Flutter &amp; ASP.NET</div>
-              <p>Designed and shipped end-to-end products across language learning, lightweight publishing and visual content.</p>
-              <ul>
-                <li>Implemented Google and Apple sign-in plus Google Play and Apple billing.</li>
-                <li>Managed purchase entitlements and invoices with RevenueCat.</li>
-                <li>Built backend services in C# ASP.NET and deployed workloads on Google Cloud.</li>
-                <li>Integrated ChatGPT capabilities for chatbot and voice-based learning experiences.</li>
-              </ul>
-            </article>
-
-            <article class="role reveal">
-              <span class="role-dot" aria-hidden="true"></span>
-              <div class="role-date">2021 — 2024</div>
-              <h3>Flutter Developer</h3>
-              <div class="role-company">VCCORP</div>
-              <p>Built and maintained customer-facing mobile applications across social messaging, CRM, utilities and retail.</p>
-              <ul>
-                <li>Delivered real-time multi-channel messaging for Bizfly Chat using WebSocket.</li>
-                <li>Built a CRM application from scratch with GetX and a configurable, dynamic view-type architecture.</li>
-                <li>Wrote native VOIP modules and connected Kotlin / Swift functionality through MethodChannel.</li>
-                <li>Led a five-person app team for the Elise fashion product and translated BA requirements into delivery plans.</li>
-                <li>Configured social login, WebView payment and production releases for both app stores.</li>
-              </ul>
-            </article>
-
-            <article class="role reveal">
-              <span class="role-dot" aria-hidden="true"></span>
-              <div class="role-date">2018 — 2021</div>
-              <h3>Bachelor of Information Technology</h3>
-              <div class="role-company">Thai Binh University</div>
-              <p>Completed a bachelor’s degree in Information Technology, building the foundation for cross-platform product engineering.</p>
-            </article>
+        <div class="hero-visual" id="hero-visual">
+          <div class="stage-backdrop" aria-hidden="true"><span>BUILD</span><span>SHIP.</span></div>
+          <div class="device-fallback" id="device-fallback" aria-hidden="true">
+            <img class="fallback-pa" src="assets/pa-analysis.png" alt="" width="1206" height="2622">
+            <img class="fallback-lingo" src="assets/lingo-home.png" alt="" width="1320" height="2868">
+          </div>
+          <canvas id="devices" tabindex="0" role="img" aria-label="Interactive 3D phones displaying real Price Action Trainer and AI Lingo screens. Drag or use arrow keys to rotate. Press R to reset."></canvas>
+          <div class="scene-controls" id="scene-controls" hidden>
+            <span class="scene-hint"><span aria-hidden="true">✳</span> Drag to explore</span>
+            <button id="reset-scene" aria-label="Reset 3D phone rotation">Reset view</button>
           </div>
         </div>
       </div>
+      <div class="hero-bottom"><span>BUILT WITH CARE. SHIPPED TO BOTH STORES.</span><div><span>iOS</span><span>Android</span><span>Flutter</span></div><span class="scroll-note">SCROLL TO DISCOVER <span aria-hidden="true">↓</span></span></div>
     </section>
 
-    <section id="skills">
-      <div class="shell">
-        <div class="section-head reveal">
-          <div><div class="kicker">03 / Capabilities</div><h2>Mobile, end to end.</h2></div>
-          <p class="section-intro">Strongest at the seams: where polished Flutter UI meets native APIs, real-time systems, payment infrastructure and production operations.</p>
-        </div>
-        <div class="skills-wrap">
-          <div class="skill-panel reveal">
-            <h3>Core engineering</h3>
-            <div class="skill-row"><span>Flutter &amp; Dart</span><span>Primary</span></div>
-            <div class="skill-row"><span>API integration</span><span>Production</span></div>
-            <div class="skill-row"><span>Kotlin &amp; Swift modules</span><span>Native bridge</span></div>
-            <div class="skill-row"><span>State management</span><span>GetX · Riverpod · Provider</span></div>
-            <div class="skill-row"><span>C# ASP.NET</span><span>Backend</span></div>
+    <section class="work-section" id="work" aria-labelledby="work-title">
+      <div class="section-intro wrap"><p class="label">01 / SELECTED WORK</p><h2 id="work-title">A few things<br><span class="serif">I’ve shipped.</span></h2><p class="intro-aside">Independent products.<br>Real screens. Real releases.<br><span>2026 — 2025</span></p></div>
+      <article class="project wrap" id="price-action">
+        <div class="project-heading"><div class="project-index">01 / 2026</div><h3>Price Action Trainer</h3><span class="project-category">EDUCATION · CHART PRACTICE</span></div>
+        <div class="project-stage pa-stage" data-tilt-stage>
+          <div class="stage-editorial"><img src="assets/pa-icon.jpg" width="64" height="64" alt="Price Action Trainer icon" loading="lazy"><p class="label">LEARNING THROUGH DOING</p><p class="stage-title">Read.<br>Decide.<br><em>Repeat.</em></p><div class="stage-bottom-note"><span class="cross" aria-hidden="true">+</span><span>Historical charts.<br>Hands-on practice.</span></div></div>
+          <div class="pa-devices">
+            <button class="screen-button pa-poster" data-full="assets/pa-2.png" data-caption="Price Action Trainer — hidden-chart backtesting. Official App Store screenshot." aria-label="Enlarge Price Action Trainer backtesting screenshot"><img src="assets/pa-2.png" alt="Actual Price Action Trainer backtesting screen with candlestick chart and Long/Short controls" width="1168" height="2532" loading="lazy"></button>
+            <button class="screen-button pa-main" data-full="assets/pa-analysis.png" data-caption="Price Action Trainer — chart analysis preview, captured from the app." aria-label="Enlarge Price Action Trainer chart analysis screenshot"><img src="assets/pa-analysis.png" alt="Actual Price Action Trainer multi-timeframe chart analysis with market structure, confirmation and risk reward feedback" width="1206" height="2622" loading="lazy"></button>
           </div>
-          <div class="skill-panel reveal">
-            <h3>Product systems</h3>
-            <div class="tool-cloud">
-              <span>VOIP</span><span>WebSocket</span><span>Firebase notifications</span><span>MethodChannel</span><span>RevenueCat</span><span>In-app purchase</span><span>Social login</span><span>FFmpeg</span><span>AdMob</span><span>Docker</span><span>CI/CD</span><span>Google Cloud</span><span>App Store</span><span>Play Console</span><span>Figma handoff</span>
-            </div>
-          </div>
+          <div class="visual-footnote"><span>ACTUAL APP SCREENS</span><span>CLICK TO EXPLORE <span aria-hidden="true">+</span></span></div>
         </div>
+        <div class="project-detail"><p>Train the decision, one candle at a time. Hidden historical charts, structured lessons and AI-assisted chart review help learners practise reading market structure.</p><dl><div><dt>My work</dt><dd>Independent product development</dd></div><div><dt>Under the hood</dt><dd>Flutter · Custom chart rendering<br>Drift / SQLite · RevenueCat</dd></div></dl><a class="text-link" href="https://apps.apple.com/us/app/price-action-trading-simulator/id6782149821" target="_blank" rel="noopener noreferrer">View on App Store <span aria-hidden="true">↗</span><small>Listed as Price Action Trading Simulator</small></a></div>
+      </article>
+      <article class="project wrap" id="ai-lingo">
+        <div class="project-heading"><div class="project-index">02 / 2025</div><h3>AI Lingo <span class="project-alias">/ Speaky AI</span></h3><span class="project-category">LANGUAGE LEARNING · AI</span></div>
+        <div class="project-stage lingo-stage" data-tilt-stage>
+          <div class="lingo-watermark" aria-hidden="true">Say hello.</div>
+          <div class="lingo-devices">
+            <button class="screen-button lingo-left" data-full="assets/lingo-roadmap.png" data-caption="AI Lingo / Speaky AI — learning roadmap. Original app screenshot." aria-label="Enlarge AI Lingo learning roadmap"><img src="assets/lingo-roadmap.png" alt="AI Lingo learning roadmap from beginner to advanced levels" width="1320" height="2868" loading="lazy"></button>
+            <button class="screen-button lingo-center" data-full="assets/lingo-talk.png" data-caption="AI Lingo / Speaky AI — a real conversation with Pip. Original app screenshot." aria-label="Enlarge AI Lingo conversation screen"><img src="assets/lingo-talk.png" alt="AI Lingo live speaking lesson with Pip, contextual feedback and hold-to-speak control" width="1320" height="2868" loading="lazy"></button>
+            <button class="screen-button lingo-right" data-full="assets/lingo-home.png" data-caption="AI Lingo / Speaky AI — daily learning path. Original app screenshot." aria-label="Enlarge AI Lingo daily learning path"><img src="assets/lingo-home.png" alt="AI Lingo home screen with personalised workplace lessons and daily grammar" width="1320" height="2868" loading="lazy"></button>
+          </div>
+          <div class="visual-footnote"><span>A LITTLE PRACTICE. EVERY DAY.</span><span>ACTUAL APP SCREENS <span aria-hidden="true">+</span></span></div>
+        </div>
+        <div class="project-detail"><p>A conversation is a good place to start. Speak with Pip, work through everyday lessons, and get feedback on pronunciation, grammar and word choice along the way.</p><dl><div><dt>My work</dt><dd>Independent product development</dd></div><div><dt>Under the hood</dt><dd>Flutter · Riverpod · Audio streaming<br>Firebase · ASP.NET · RevenueCat</dd></div></dl><a class="text-link" href="https://apps.apple.com/us/app/speaky-ai-speak-english/id6745432034" target="_blank" rel="noopener noreferrer">Meet Speaky AI <span aria-hidden="true">↗</span><small>AI Lingo’s current App Store name</small></a></div>
+      </article>
+    </section>
+
+    <section class="archive-section wrap" aria-labelledby="archive-title">
+      <div class="archive-intro"><p class="label">MORE FROM THE ARCHIVE</p><h2 id="archive-title">Earlier work.</h2></div>
+      <div class="archive-list">
+        <details class="archive-item"><summary><span class="archive-year">2024–25</span><h3>Create Simple Website</h3><span class="archive-type">Mobile + Web</span><span class="plus" aria-hidden="true">+</span></summary><div class="archive-content"><p>A mobile application and website for building websites from templates. Solo development, with C# ASP.NET backend services.</p><a class="text-link" href="https://mysimplesite.it.com/" target="_blank" rel="noopener noreferrer">Visit website <span aria-hidden="true">↗</span></a></div></details>
+        <details class="archive-item"><summary><span class="archive-year">2024–25</span><h3>10 Minutes English</h3><span class="archive-type">Language learning</span><span class="plus" aria-hidden="true">+</span></summary><div class="archive-content"><p>English through stories and subtitled videos, with ChatGPT-powered conversation and voice chat. Independently developed and released for iOS and Android.</p><div class="inline-links"><a class="text-link" href="https://apps.apple.com/app/id6499420243" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span></a><a class="text-link" href="https://play.google.com/store/apps/details?id=com.datthe.storyinlevel" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span></a></div></div></details>
+        <details class="archive-item"><summary><span class="archive-year">2024</span><h3>Buddhism Wallpaper</h3><span class="archive-type">Content + Imagery</span><span class="plus" aria-hidden="true">+</span></summary><div class="archive-content"><p>A personal product bringing Buddhist wisdom and wallpapers together, with image customisation and sharing.</p><a class="text-link" href="https://apps.apple.com/app/id6504455597" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span></a></div></details>
+        <details class="archive-item"><summary><span class="archive-year">2021–24</span><h3>Elise Fashion</h3><span class="archive-type">Retail · VCCORP</span><span class="plus" aria-hidden="true">+</span></summary><div class="archive-content"><p>Led a five-person app team. Built the Flutter foundation, translated requirements into delivery plans, and integrated social sign-in and WebView payments.</p><div class="inline-links"><a class="text-link" href="https://apps.apple.com/vn/app/elise-fashion/id1658265482" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span></a><a class="text-link" href="https://play.google.com/store/apps/details?id=com.elise.customers" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span></a></div></div></details>
+        <details class="archive-item"><summary><span class="archive-year">2021–24</span><h3>Bizfly Chat & CRM</h3><span class="archive-type">Business · VCCORP</span><span class="plus" aria-hidden="true">+</span></summary><div class="archive-content"><p>Real-time social messaging with WebSocket; native VietID and VOIP modules; a configurable CRM interface with more than 20 view types. Developed and maintained in two-person teams.</p><div class="inline-links"><a class="text-link" href="https://apps.apple.com/vn/app/bizfly-chat/id1566526140" target="_blank" rel="noopener noreferrer">Bizfly Chat <span aria-hidden="true">↗</span></a><a class="text-link" href="https://apps.apple.com/vn/app/bizfly-crm/id1608832560" target="_blank" rel="noopener noreferrer">Bizfly CRM <span aria-hidden="true">↗</span></a></div></div></details>
+        <details class="archive-item"><summary><span class="archive-year">2021–24</span><h3>Nước Ngọc Tuấn</h3><span class="archive-type">Utilities · VCCORP</span><span class="plus" aria-hidden="true">+</span></summary><div class="archive-content"><p>Built a customer registration and information app for a water supply company, from Figma designs through to store release, in a two-person team.</p><a class="text-link" href="https://play.google.com/store/apps/details?id=com.nuocngoctuan.customer" target="_blank" rel="noopener noreferrer">Google Play <span aria-hidden="true">↗</span></a></div></details>
       </div>
     </section>
 
-    <section class="contact" id="contact">
-      <div class="shell">
-        <div class="contact-card reveal">
-          <div class="kicker">04 / Contact</div>
-          <h2>Have a mobile product that needs to feel simple?</h2>
-          <p>I’m based in Thái Bình, Vietnam and open to conversations about Flutter products, native integrations and focused AI experiences.</p>
-          <div class="contact-links">
-            <a class="button primary" href="mailto:thedat08101999@gmail.com">thedat08101999@gmail.com</a>
-            <a class="button" href="tel:+84813232586">+84 813 232 586</a>
-            <a class="button" href="https://www.facebook.com/profile.php?id=100011310222496" target="_blank" rel="noreferrer">Facebook</a>
-          </div>
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="about-top"><div><p class="label">02 / THE PERSON BEHIND THE PRODUCTS</p><h2 id="about-title">Developer.<br>Always a <span class="serif">learner.</span></h2></div><img src="dat-portrait.jpg" width="244" height="244" alt="Nguyễn Đình Thế Đạt" loading="lazy"></div>
+        <div class="about-copy"><span class="large-asterisk" aria-hidden="true">✳</span><p>I’m Đạt, a Flutter developer from Thái Bình, Vietnam. I enjoy taking a product all the way through: interface, native integration, backend, billing and the details of getting it into someone’s hands.</p><p>My work has moved from business applications at VCCORP to building my own products. I’m most interested in useful tools that help people learn by doing.</p></div>
+        <div class="career">
+          <p class="label">THE JOURNEY / NEWEST FIRST</p>
+          <div class="career-row"><span class="career-date">2026</span><h3>Price Action Trainer</h3><p>Independent product · Released July 2026</p></div>
+          <div class="career-row"><span class="career-date">2025</span><h3>AI Lingo / Speaky AI</h3><p>Independent product · Released December 2025</p></div>
+          <div class="career-row"><span class="career-date">2024 — 2025</span><h3>Personal products</h3><p>Flutter developer · Mobile, web & backend</p></div>
+          <div class="career-row"><span class="career-date">2021 — 2024</span><h3>VCCORP</h3><p>Flutter developer · Production & client apps</p></div>
+          <div class="career-row"><span class="career-date">2018 — 2021</span><h3>Thai Binh University</h3><p>Bachelor of Information Technology</p></div>
         </div>
+        <div class="capabilities"><p class="label">TOOLS I WORK WITH</p><div><p>Flutter / Dart / Kotlin / Swift</p><p>MethodChannel / VOIP / WebSocket</p><p>Riverpod / GetX / Provider / Firebase</p><p>ASP.NET / Docker / CI/CD / RevenueCat</p><p>FFmpeg / AdMob / App Store / Google Play</p></div></div>
+        <a class="cv-link" href="nguyen-dinh-the-dat-cv.pdf" download>Download the full CV <span aria-hidden="true">↓</span></a>
       </div>
     </section>
+
+    <footer id="contact" class="contact-section">
+      <div class="wrap"><div class="contact-top"><p class="label">HAVE A PRODUCT IN MIND?</p><p>Let’s make it work.<br>And make it feel right.</p></div><a class="contact-title" href="mailto:thedat08101999@gmail.com">Let’s talk<span aria-hidden="true">↗</span></a><div class="footer-links"><a href="mailto:thedat08101999@gmail.com">thedat08101999@gmail.com</a><a href="tel:+84813232586">+84 813 232 586</a><a href="https://www.facebook.com/profile.php?id=100011310222496" target="_blank" rel="noopener noreferrer">Facebook</a><button id="copy-email">Copy email <span aria-hidden="true">⧉</span></button></div><div class="footer-bottom"><span>© 2026 NGUYỄN ĐÌNH THẾ ĐẠT</span><span>THÁI BÌNH, VIETNAM</span><a href="#top">BACK TO TOP ↑</a></div></div>
+    </footer>
   </main>
-
-  <footer class="shell">
-    <span>© <span id="year"></span> Nguyễn Đình Thế Đạt</span>
-    <span>Flutter developer · Product builder</span>
-  </footer>
-
-  <script>
-    const nav = document.getElementById('nav');
-    const setNav = () => nav.classList.toggle('scrolled', window.scrollY > 18);
-    setNav();
-    window.addEventListener('scroll', setNav, { passive: true });
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
-  </script>
+  <dialog id="screen-dialog" aria-labelledby="dialog-caption"><div class="dialog-bar"><p id="dialog-caption"></p><button class="dialog-close" aria-label="Close screenshot">Close <span aria-hidden="true">×</span></button></div><div class="dialog-image-wrap"><img id="dialog-image" alt=""></div></dialog>
+  <div class="toast" role="status" aria-live="polite" id="toast"></div>
 </body>
 </html>
