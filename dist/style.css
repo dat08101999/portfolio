@@ -59,3 +59,63 @@ dialog{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-heigh
   .wordmark{font-size:28px}
   .site-header nav{gap:14px;font-size:11px}
 }
+
+/* Project ownership: readable case notes, not another wall of cards. */
+.intro-aside .text-link{margin-top:18px}
+.case-study{margin-top:40px;border-top:1px solid var(--line);padding-top:30px}
+.case-heading{display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:baseline;margin-bottom:28px}
+.case-heading h4{font-size:23px;line-height:1.4;letter-spacing:-.035em;font-weight:600;margin:0}
+.contribution-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}
+.contribution-grid>div{border-top:1px solid var(--line);padding-top:18px}
+.contribution-number{font-size:12px;color:var(--accent)}
+.contribution-grid h5{font-size:17px;line-height:1.5;font-weight:700;margin:12px 0}
+.contribution-grid p{font-size:15px;line-height:1.8;color:#50524c}
+.delivery-note{display:grid;grid-template-columns:1fr 2fr;gap:32px;margin-top:32px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.delivery-note p{font-size:14px;line-height:1.7}
+.archive-intro>div{width:61%}
+.archive-intro h2{width:auto;font-size:clamp(32px,3.7vw,56px)}
+.archive-intro>div>p{font-size:15px;color:#5b5e55;max-width:560px;margin-top:22px;line-height:1.75}
+.archive-item summary{grid-template-columns:100px minmax(0,1fr) 190px 30px;gap:20px}
+.archive-preview{font-size:14px;color:#62655c;line-height:1.65;margin-top:6px;max-width:610px}
+.archive-content{padding:5px 50px 40px 120px;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:55px}
+.project-context>.label{margin-bottom:12px;color:var(--muted);font-size:12px}
+.archive-content .project-context>p:not(.label){font-size:15px;line-height:1.8}
+.project-context .project-stack{margin:18px 0;color:#676a60;font-size:13px!important}
+.project-context .inline-links{flex-wrap:wrap;gap:14px 22px;margin-top:20px}
+.project-context>.text-link{margin-top:6px}
+.project-ownership h4{font-size:16px;line-height:1.5;margin:0 0 13px;font-weight:700}
+.project-ownership ul{list-style:none;margin:0;padding:0}
+.project-ownership li{position:relative;font-size:15px;line-height:1.8;padding-left:18px;margin-bottom:10px}
+.project-ownership li:before{content:'—';position:absolute;left:0;color:var(--accent)}
+.project-ownership .scope-note{font-size:13px;line-height:1.7;color:#676a60;border-top:1px solid var(--line);padding-top:14px;margin-top:20px}
+.archive-date-note{font-size:12px;color:#676a60;max-width:750px;margin-top:24px;line-height:1.8}
+.project,.archive-item{scroll-margin-top:35px}
+@media(max-width:1100px){
+  .case-heading,.delivery-note{grid-template-columns:1fr 2fr;gap:24px}
+  .contribution-grid{gap:24px}
+  .archive-item summary{grid-template-columns:85px minmax(0,1fr) 150px 25px;gap:16px}
+  .archive-content{padding-left:101px;padding-right:0;gap:30px}
+}
+@media(max-width:760px){
+  .case-study{margin-top:30px;padding-top:24px}
+  .case-heading,.delivery-note{grid-template-columns:1fr;gap:12px}
+  .case-heading h4{font-size:22px}
+  .contribution-grid{grid-template-columns:1fr;gap:24px}
+  .contribution-grid>div{padding-top:15px}
+  .contribution-grid h5{margin:6px 0 8px}
+  .contribution-grid p{font-size:15px}
+  .delivery-note{margin-top:25px;padding:20px 0}
+  .archive-intro>div{width:100%}
+  .archive-intro>div>p{font-size:15px}
+  .archive-item summary{grid-template-columns:1fr 24px;gap:6px 16px;padding:23px 0}
+  .archive-year{grid-column:1;font-size:12px}
+  .archive-item summary>div{grid-column:1;grid-row:2}
+  .archive-item summary>.plus{grid-column:2;grid-row:1/3}
+  .archive-item h3{font-size:24px;line-height:1.35}
+  .archive-preview{font-size:13px;margin-top:8px}
+  .archive-content{padding:5px 0 30px;grid-template-columns:1fr;gap:26px}
+  .archive-content .project-context>p:not(.label){font-size:15px}
+  .project-ownership li{font-size:15px}
+  .project-context .inline-links{margin-top:15px}
+  .archive-date-note{font-size:12px}
+}

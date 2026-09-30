@@ -34,6 +34,15 @@ document.getElementById('copy-email').addEventListener('click', async () => {
   toastTimeout = setTimeout(() => toast.classList.remove('show'), 2600);
 });
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+// A project shared from a profile should open directly to its responsibilities.
+function revealLinkedProject() {
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+  const project = document.getElementById(id);
+  if (project instanceof HTMLDetailsElement) project.open = true;
+}
+revealLinkedProject();
+window.addEventListener('hashchange', revealLinkedProject);
 document.querySelectorAll('[data-tilt-stage]').forEach(stage => {
   stage.addEventListener('pointermove', e => {
     if (reduceMotion.matches || e.pointerType !== 'mouse') return;
