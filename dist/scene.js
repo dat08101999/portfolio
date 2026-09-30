@@ -94,8 +94,10 @@ async function init() {
   let targetX=0, targetY=0, driftX=0, driftY=0;
   const resize = () => {
     const width=container.clientWidth, height=container.clientHeight;
+    if (!width || !height) return;
     camera.aspect=width/height;
-    camera.position.z = camera.aspect < .85 ? 15.7 : 13.7;
+    const fitWidth = 6.4 / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect);
+    camera.position.z = Math.max(13.7, fitWidth);
     camera.updateProjectionMatrix(); renderer.setSize(width,height,false); render(0);
   };
   function render(time) {
